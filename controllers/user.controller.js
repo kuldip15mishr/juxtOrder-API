@@ -25,7 +25,7 @@ exports.addUser = async (req, res, next) => {
 exports.getUserByID = async (req, res, next) => {
     try {
   
-     var id = req.params.id ? parseInt(req.params.id) :0;
+     var id = req.params.id ? req.params.id :0;
      
         db.view('byUserid', 'new-view', {key: id}, function(err, body) {
             if (err) console.log(err);
