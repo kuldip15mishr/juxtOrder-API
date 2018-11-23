@@ -10,4 +10,9 @@ module.exports = router;
 
 
 router.route('/add')
-  .get(controller.addUser)
+  .post(controller.addUser)
+
+  router.route('/getUserByID/:id')
+  .get(controller.getUserByID)
+
+  

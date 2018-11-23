@@ -1,18 +1,14 @@
 
-var nano = require('nano')('https://couchdb-6e2366.smileupps.com');
+var nano = require('nano')('http://127.0.0.1:5984/');
 var db = nano.db.use('juxtorder');
 
 
 
 exports.addUser = async (req, res, next) => {
   try {
-    var data = { 
-        name: 'pikachu', 
-        skills: ['thunder bolt', 'iron tail', 'quick attack', 'mega punch'], 
-        type: 'electric' 
-    };
     
-    db.insert(data, 'unique_id', function(err, body){
+    
+    db.insert(req.body, function(err, body){
       if(!err){
         return res.json(body)
       }
@@ -22,3 +18,20 @@ exports.addUser = async (req, res, next) => {
     return next(error)
   }
 }
+
+
+exports.getUserByID = async (req, res, next) => {
+    try {
+  
+     var id = req.params === undefined  && req.params.id ? parseInt(req.params.id) :0;
+     
+        db.view('byUserid', 'new-view', {key: (id)}, function(err, body) {
+            if (err) console.log(err);
+           
+              return res.json(body)
+          });
+      
+    } catch (error) {
+      return next(error)
+    }
+  }
