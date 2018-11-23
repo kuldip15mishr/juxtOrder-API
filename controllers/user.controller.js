@@ -1,5 +1,7 @@
 
-var nano = require('nano')('http://127.0.0.1:5984/');
+var config = require('../config/constant');
+
+var nano = require('nano')(config.apiURL.COUCHDB_URL_SERVER);
 var db = nano.db.use('juxtorder');
 
 
