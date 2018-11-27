@@ -5,7 +5,6 @@ var nano = require('nano')(config.apiURL.COUCHDB_URL_LOCALHOST);
 var db = nano.db.use('juxtorder');
 
 
-
 exports.addUser = async (req, res, next) => {
   try {
     

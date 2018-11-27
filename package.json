@@ -15,6 +15,7 @@
     "nano": "^7.1.1",
     "nodemon": "^1.18.6",
     "pug": "2.0.0-beta11",
-    "query-string": "^6.2.0"
+    "query-string": "^6.2.0",
+    "cors": "^2.8.3"
   }
 }

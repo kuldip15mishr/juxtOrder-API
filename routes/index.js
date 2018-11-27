@@ -11,4 +11,5 @@ router.get('/tt', function(req, res, next) {
 
 router.use('/user', userroutes);
 router.use('/menu',menuroutes);
+router.use('/restaurant',restaurant);
 module.exports = router;
