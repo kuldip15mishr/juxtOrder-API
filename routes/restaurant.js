@@ -9,4 +9,6 @@ module.exports = router;
 router.route('/addrestaurant')
   .post(controller.addRestaurant)
 
-  
+
+// router.route('/getRestaurant/:id')
+//   .get(controller.getUserByID)  

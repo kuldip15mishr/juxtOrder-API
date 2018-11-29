@@ -9,10 +9,15 @@ const controller = require('../controllers/user.controller');
 module.exports = router;
 
 
-router.route('/add')
+  router.route('/add')
   .post(controller.addUser)
 
   router.route('/getUserByID/:id')
   .get(controller.getUserByID)
+  router.route('/getAllUser')
+  .get(controller.getAllUser)
+  
 
+  router.route('/authentication')
+  .post(controller.authentication)
   
