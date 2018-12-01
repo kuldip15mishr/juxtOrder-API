@@ -10,5 +10,8 @@ router.route('/addrestaurant')
   .post(controller.addRestaurant)
 
 
-// router.route('/getRestaurant/:id')
-//   .get(controller.getUserByID)  
+router.route('/getRestaurant')
+  .get(controller.getRestaurantbyuser)  
+
+  router.route('/getChainRestaurant/:id')
+  .get(controller.getChainRestaurantByRestaurantID)  

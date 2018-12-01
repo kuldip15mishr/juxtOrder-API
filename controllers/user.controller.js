@@ -24,7 +24,7 @@ exports.getAllUser = async (req, res, next) => {
 
    var id = req.params.id ? req.params.id :0;
    
-      db.view('AllUser', 'alluser', {}, function(err, body) {
+      db.view('AllUsers', 'Users', {}, function(err, body) {
           if (err) console.log(err);
          
             return res.json(body)
@@ -44,7 +44,7 @@ exports.authentication= async (req, res, next) => {
          if(body && body.rows && body.rows.length >0){
            var record = body.rows[0].value;
            if( record && record.password === req.body.password){
-            return res.json({status :'success'})
+            return res.json({ _id :record._id, status :'success', role :record.role,restaurantattached :record.restaurant_id,name :record.name,email :record.email })
            }else{
             return res.json({status :'fail'})
            }
