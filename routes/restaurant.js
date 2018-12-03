@@ -15,3 +15,11 @@ router.route('/getRestaurant')
 
   router.route('/getChainRestaurant/:id')
   .get(controller.getChainRestaurantByRestaurantID)  
+
+  
+  router.route('/getAllChainRestaurant')
+  .get(controller.getAllChainRestaurant)  
+
+
+  router.route('/getChainRestaurantByChainID/:id')
+  .get(controller.getChainRestaurantByChainID) 

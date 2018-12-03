@@ -61,3 +61,44 @@ exports.getChainRestaurantByRestaurantID = async (req, res, next) => {
      return next(error)
    }
 }
+
+exports.getChainRestaurantByChainID = async (req, res, next) => {
+  try {
+    let id= req.params.id;
+       db.view('ChainRestaurant', 'ByChainID', {key: id}, function(err, body) {
+           if (err) console.log(err);
+          if(body && body.rows && body.rows.length >0){
+            var record = body.rows;
+            if( record ){
+             return res.json({  status :'success', data :record })
+            }else{
+             return res.json({status :'fail'})
+            }
+          }
+             
+         });
+     
+   } catch (error) {
+     return next(error)
+   }
+}
+exports.getAllChainRestaurant = async (req, res, next) => {
+  try {
+    let id= req.params.id;
+       db.view('ChainByParentID', 'ChainRestaurant', {}, function(err, body) {
+           if (err) console.log(err);
+          if(body && body.rows && body.rows.length >0){
+            var record = body.rows;
+            if( record ){
+             return res.json({  status :'success', data :record })
+            }else{
+             return res.json({status :'fail'})
+            }
+          }
+             
+         });
+     
+   } catch (error) {
+     return next(error)
+   }
+}
