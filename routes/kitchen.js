@@ -7,7 +7,13 @@ const controller = require('../controllers/kitchen.controller');
 module.exports = router;
 
 
-router.route('/getCurrentOrders/:resID')
+router.route('/getCurrentOrders')
+  .get(controller.getCurrentOrder)
+
+router.route('/getCurrentOrders/:rid')
+  .get(controller.getCurrentOrder)
+
+router.route('/getCurrentOrders/:rid/:cid')
   .get(controller.getCurrentOrder)
 
   
