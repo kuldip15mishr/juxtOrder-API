@@ -17,3 +17,18 @@ exports.addMenu = async (req, res, next) => {
     return next(error)
   }
 }
+exports.getAllMenu = async (req, res, next) => {
+  try {
+
+     
+      
+         db.view('menu', 'ByMenu', {}, function(err, body) {
+             if (err) console.log(err);
+            
+               return res.json(body)
+           });
+       
+     } catch (error) {
+       return next(error)
+     }
+}
