@@ -16,4 +16,6 @@ router.route('/getCurrentOrders/:rid')
 router.route('/getCurrentOrders/:rid/:cid')
   .get(controller.getCurrentOrder)
 
+  router.route('/updateOrders/:id')
+  .post(controller.UpdateOrderStatus)
   
