@@ -12,7 +12,7 @@ exports.getCurrentOrder = async (req, res, next) => {
         var cid = req.params.cid ? req.params.cid : "";
 
         db.view('order', 'orderByRestaurant', {
-            key: [rid, cid]
+            key: ["",rid, cid]
         }, function (err, body) {
             if (err) console.log(err);
 
