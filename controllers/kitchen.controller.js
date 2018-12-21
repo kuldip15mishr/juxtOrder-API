@@ -10,14 +10,27 @@ exports.getCurrentOrder = async (req, res, next) => {
 
         var rid = req.params.rid ? req.params.rid : "";
         var cid = req.params.cid ? req.params.cid : "";
- 
+var currentdat
         db.view('order', 'orderByRestaurant', {
-            //key: ["",rid, cid]
+
             key: null
         }, function (err, body) {
+            let result=[];
             if (err) console.log(err);
+            if (body && body.rows && body.rows.length > 0) {
+                for(let i=0;i<body.rows.length;i++){
+                    if(body.rows[i].value.createdDate ){
+                        let orderdate =moment(body.rows[i].value.createdDate);
+                        if (orderdate.isValid() && moment().diff(orderdate) > 0) {
+                            result.push(body.rows[i].value)
+                        }else{
+                            console.log('invalid');
+                        }
 
-            return res.json(body)
+                    }
+                }
+            }
+            return res.json(result)
         });
 
     } catch (error) {
@@ -29,27 +42,27 @@ exports.UpdateOrderStatus = async (req, res, next) => {
     try {
 
         var id = req.params.id ? req.params.id : "";
-        var postparams =req.body;
-        var updateVal={};
+        var postparams = req.body;
+        var updateVal = {};
         db.view('order', 'OrderByID', {
             key: id
         }, function (err, body) {
             if (err) console.log(err);
-            if(body && body.rows && body.rows.length >0){
-                updateVal  =body.rows[0].value;
+            if (body && body.rows && body.rows.length > 0) {
+                updateVal = body.rows[0].value;
             }
-         
-               
-                    updateVal[postparams.key]=postparams.value;
-                    db.insert(updateVal, id, function (err, response, header) {
-                        if (!err) {
-                           console.log(response);
-                           return res.json(body)
-                        }
-                    })
-                
-          
-            
+
+
+            updateVal[postparams.key] = postparams.value;
+            db.insert(updateVal, id, function (err, response, header) {
+                if (!err) {
+                    console.log(response);
+                    return res.json(body)
+                }
+            })
+
+
+
         });
 
     } catch (error) {
