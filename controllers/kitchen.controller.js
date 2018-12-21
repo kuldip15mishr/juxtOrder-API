@@ -21,7 +21,7 @@ var currentdat
                 for(let i=0;i<body.rows.length;i++){
                     if(body.rows[i].value.createdDate ){
                         let orderdate =moment(body.rows[i].value.createdDate);
-                        if (orderdate.isValid() && moment().diff(orderdate) > 0) {
+                        if (orderdate.isValid() && moment().diff(orderdate) >= 0) {
                             result.push(body.rows[i].value)
                         }else{
                             console.log('invalid');
