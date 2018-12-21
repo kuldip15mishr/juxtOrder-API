@@ -1,5 +1,5 @@
 var config = require('../config/constant');
-var nano = require('nano')(config.apiURL.COUCHDB_URL_LOCALHOST);
+var nano = require('nano')(config.apiURL.COUCHDB_URL_SERVER);
 var db = nano.db.use('juxtorder');
 
 
@@ -19,9 +19,6 @@ exports.addMenu = async (req, res, next) => {
 }
 exports.getAllMenu = async (req, res, next) => {
   try {
-
-     
-      
          db.view('menu', 'ByMenu', {}, function(err, body) {
              if (err) console.log(err);
             
