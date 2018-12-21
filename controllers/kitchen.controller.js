@@ -10,7 +10,8 @@ exports.getCurrentOrder = async (req, res, next) => {
 
         var rid = req.params.rid ? req.params.rid : "";
         var cid = req.params.cid ? req.params.cid : "";
-var currentdat
+        var datefromuser = req.params.date ? req.params.date :"";
+var converteddat=moment(datefromuser);
         db.view('order', 'orderByRestaurant', {
 
             key: null
@@ -21,7 +22,7 @@ var currentdat
                 for(let i=0;i<body.rows.length;i++){
                     if(body.rows[i].value.createdDate ){
                         let orderdate =moment(body.rows[i].value.createdDate);
-                        if (orderdate.isValid() && moment().diff(orderdate) >= 0) {
+                        if (orderdate.isValid() && converteddat.diff(orderdate) >= 0) {
                             result.push(body.rows[i].value)
                         }else{
                             console.log('invalid');
