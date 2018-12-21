@@ -10,8 +10,8 @@ exports.getCurrentOrder = async (req, res, next) => {
 
         var rid = req.params.rid ? req.params.rid : "";
         var cid = req.params.cid ? req.params.cid : "";
-        var datefromuser = req.params.date ? req.params.date :"";
-var converteddat=moment(datefromuser);
+        var datefromuser = req.body.date ? req.body.date :"";
+        var converteddat=moment(datefromuser);
         db.view('order', 'orderByRestaurant', {
 
             key: null
