@@ -8,8 +8,8 @@ var db = nano.db.use('juxtorder');
 exports.getCurrentOrder = async (req, res, next) => {
     try {
 
-        var rid = req.params.rid ? req.params.rid : "";
-        var cid = req.params.cid ? req.params.cid : "";
+        // var rid = req.params.rid ? req.params.rid : "";
+        // var cid = req.params.cid ? req.params.cid : "";
         var datefromuser = req.body.date ? req.body.date :"";
         var converteddat=moment(datefromuser);
         db.view('order', 'orderByRestaurant', {
