@@ -21,3 +21,7 @@ module.exports = router;
   router.route('/authentication')
   .post(controller.authentication)
   
+
+  router.route('/deleteuser/:id')
+  .post(controller.deleteUser)
+  

@@ -71,3 +71,32 @@ exports.getUserByID = async (req, res, next) => {
       return next(error)
     }
   }
+  exports.deleteUser  = async (req, res, next) => {
+    try {
+  
+        var id = req.params.id ? req.params.id : "";
+        
+       
+        db.view('byUserid', 'new-view', {
+            key: id
+        }, function (err, body) {
+            if (err) console.log(err);
+            if (body && body.rows && body.rows.length > 0) {
+                let rev = body.rows[0].value;
+        
+            db.destroy( id,rev, function (err, response, header) {
+                if (!err) {
+                    console.log(response);
+                    return res.json(body)
+                }
+            })
+          }
+  
+  
+  
+        });
+  
+    } catch (error) {
+        return next(error)
+    }
+  }
