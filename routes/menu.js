@@ -13,3 +13,7 @@ router.route('/addmenu')
   router.route('/getAllMenu')
   .post(controller.getAllMenu)
   
+
+  router.route('/deleteMenu/:id')
+  .post(controller.deleteMenu)
+  
